@@ -1,3 +1,5 @@
 node_modules/
 lib/
 dist/bundle.min.js
+npm-debug.log
+package-lock.json

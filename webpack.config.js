@@ -1,12 +1,12 @@
 const path = require("path");
-const MinifyPlugin = require("babel-minify-webpack-plugin");
-minifyOpts = {};
-pluginOpts = {};
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+
 module.exports = {
   entry: "./src/app.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.min.js"
   },
-  plugins: [new MinifyPlugin(minifyOpts, pluginOpts)]
+  devtool: 'source-map',
+  plugins: [new UglifyJSPlugin({sourceMap: true})]
 };
