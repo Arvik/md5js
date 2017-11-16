@@ -1,5 +1,5 @@
-import * as ui from 'ui';
-import * as md5 from 'md5';
+import * as ui from "./ui";
+import * as md5 from "./md5";
 
 const log = console.log;
 
