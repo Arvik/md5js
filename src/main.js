@@ -1,4 +1,9 @@
+import * as ui from 'ui';
+import * as md5 from 'md5';
+
 const log = console.log;
+
+
 
 function drop_handler(event) {
   log("drop");
