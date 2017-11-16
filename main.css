@@ -1,0 +1,13 @@
+div {
+    width: 50%;
+    height: 50%;
+    background-color: rgb(201, 201, 201);
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
