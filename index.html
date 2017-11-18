@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Online MD5 checksum tool</title>
-    <script src="dist/main.min.js"></script>
+    <script src="dist/bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="main.css">
 
 </head>
 
 <body>
-    <div id="md5check" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
-        <strong>Drag one or more files to this Drop Zone ...</strong>
+    <div class="square-box" id="md5check" ondrop="drop_handler(event);">
+        <div class="square-content">
+            <span>Drop files here to calculate md5 hash...</span>
+        </div>
     </div>
 </body>
 

@@ -3,9 +3,13 @@ import * as md5 from "./md5";
 
 const log = console.log;
 
+ui.onWindowLoad(function() {
+  window.md5check.ondragover = preventDefault;
+  window.md5check.ondragend = preventDefault;
+  window.md5check.ondrop = dropHandler;
+});
 
-
-function drop_handler(event) {
+function dropHandler(event) {
   log("drop");
   event.preventDefault();
   var dt = event.dataTransfer;
@@ -14,8 +18,7 @@ function drop_handler(event) {
     for (var i = 0; i < dt.items.length; i++) {
       if (dt.items[i].kind == "file") {
         var f = dt.items[i].getAsFile();
-        log("... file[" + i + "].name = " + f.name + " size=" + f.size);
-        calculateMd5(f);
+        alert(calculateMd5(f));
       }
     }
   } else {
@@ -26,17 +29,19 @@ function drop_handler(event) {
   }
 }
 
-function dragend_handler(event) {
-  log("dragend_handler");
-  event.preventDefault();
-}
-
-function dragover_handler(event) {
-  log("dragover_handler");
+function preventDefault(event) {
   event.preventDefault();
 }
 
 function calculateMd5(file) {
   let pos = 0;
   let buf = 4096;
+  while (pos < file.size) {
+    let fileReader = new FileReader();
+    let size = Math.min(pos+buf,file.size);
+    let blob = file.slice(pos,size);
+    pos+=size;
+    fileReader.readAsBinaryString(blob);
+  }
+  return pos;
 }
