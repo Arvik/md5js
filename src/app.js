@@ -13,20 +13,21 @@ function dropHandler(event) {
   log("drop");
   event.preventDefault();
   var dt = event.dataTransfer;
+  alert('1234');
   if (dt.items) {
-    // Use DataTransferItemList interface to access the file(s)
+    let ul = document.createElement("ul");
     for (var i = 0; i < dt.items.length; i++) {
       if (dt.items[i].kind == "file") {
+        let li = document.createElement("li");
         var f = dt.items[i].getAsFile();
-        alert(calculateMd5(f));
+        let md5=calculateMd5(f);
+        let text = `File:${f.name} : md5=[${md5}]`;
+        li.appendChild(document.createTextNode(text));
+        ul.appendChild(li);
       }
     }
-  } else {
-    // Use DataTransfer interface to access the file(s)
-    for (var i = 0; i < dt.files.length; i++) {
-      console.log("... file[" + i + "].name = " + dt.files[i].name);
-    }
-  }
+    window.md5.appendChild(ul);
+  } 
 }
 
 function preventDefault(event) {
@@ -38,9 +39,9 @@ function calculateMd5(file) {
   let buf = 4096;
   while (pos < file.size) {
     let fileReader = new FileReader();
-    let size = Math.min(pos+buf,file.size);
-    let blob = file.slice(pos,size);
-    pos+=size;
+    let size = Math.min(pos + buf, file.size);
+    let blob = file.slice(pos, size);
+    pos += size;
     fileReader.readAsBinaryString(blob);
   }
   return pos;
