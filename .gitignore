@@ -1,5 +1,4 @@
 node_modules/
-lib/
-dist/bundle.min.js
+dist/
 npm-debug.log
 package-lock.json
